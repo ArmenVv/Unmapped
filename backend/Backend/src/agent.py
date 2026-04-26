@@ -27,7 +27,7 @@ EMBED_BATCH_DELAY = 2.0
 
 
 class JobSuitabilityAgent:
-    def __init__(self, chroma_path: str = "./chroma_db"):
+    def __init__(self, chroma_path: str = "chroma_db"):
         self.api_key = os.environ.get("GEMINI_API_KEY")
         if not self.api_key:
             raise ValueError("GEMINI_API_KEY not found in environment variables")
@@ -45,10 +45,10 @@ class JobSuitabilityAgent:
             logger.info("Created chat_history collection.")
 
         try:
-            self.candidates_collection = self.chroma_client.get_collection(name="candidate_profiles")
+            self.candidates_collection = self.chroma_client.get_collection(name="candidates")
             logger.info("Loaded existing candidate_profiles collection.")
         except chromadb.errors.NotFoundError:
-            self.candidates_collection = self.chroma_client.create_collection(name="candidate_profiles")
+            self.candidates_collection = self.chroma_client.create_collection(name="candidates")
             logger.info("Created candidate_profiles collection.")
 
     @staticmethod
@@ -295,7 +295,7 @@ class EmployerAgent(JobSuitabilityAgent):
     def search_candidates(self, employer_prompt: str, n_results: int = 5) -> Dict[str, Any]:
         if self.candidates_collection.count() == 0:
             return {
-                "error": "No candidate profiles found. First run candidate analysis and store profiles."
+                "error": "No  candidate profiles found. First run candidate analysis and store profiles."
             }
 
         query_vec = self.get_embedding(employer_prompt, task_type="retrieval_query")
