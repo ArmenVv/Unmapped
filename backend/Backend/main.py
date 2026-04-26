@@ -9,7 +9,7 @@ def main():
     parser.add_argument(
         "--mode",
         choices=["candidate", "employer"],
-        default="candidate",
+        default="employer",
         help="candidate = analyze and store a candidate, employer = search stored candidates",
     )
 

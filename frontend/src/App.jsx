@@ -50,9 +50,26 @@ export default function App() {
         <div className="job-page">
           <form
             className="job-form page-animate"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault()
-              setJobSubmitted(true)
+                const formData = new FormData(e.target)
+  formData.append("jobType", jobType)
+
+  try {
+    const response = await fetch(`${API_URL}/apply`, {
+      method: "POST",
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to send application")
+    }
+
+    setJobSubmitted(true)
+  } catch (error) {
+    alert("Error sending data to backend")
+    console.error(error)
+  }
             }}
           >
             <button
