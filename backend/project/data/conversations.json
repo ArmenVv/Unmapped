@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Chat title",
+    "mapping": {
+      "id1": {
+        "message": {
+          "author": {"role": "user"},
+          "content": {"parts": ["How do I construct working connected Object oriented project with python as a base, using calls _init_ nad other things. connect it to database of users and find suitable person from all of them"]}
+        }
+      },
+      "id2": {
+        "message": {
+          "author": {"role": "assistant"},
+          "content": {"parts": ["You can start with..."]}
+        }
+      }
+    }
+  }
+]
